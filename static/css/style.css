@@ -1,0 +1,254 @@
+
+:root {
+  --cor-fundo-overlay: rgba(10, 20, 15, 0.72);
+  --cor-texto: #f4f4f2;
+  --cor-texto-suave: #d8d8d4;
+  --cor-card: rgba(15, 15, 15, 0.55);
+  --cor-borda: rgba(255, 255, 255, 0.15);
+  --cor-accent-padrao: #4caf7d;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: "Segoe UI", Verdana, Arial, sans-serif;
+  color: var(--cor-texto);
+}
+
+body.pagina-hoenn {
+  background-image:
+    linear-gradient(var(--cor-fundo-overlay), var(--cor-fundo-overlay)),
+    url("/images/hoenn-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--cor-borda);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.site-header__wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.site-title a {
+  color: var(--cor-texto);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav a {
+  color: var(--cor-texto-suave);
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--cor-texto);
+}
+
+main {
+  flex: 1;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.hero {
+  text-align: center;
+  padding: 2.5rem 1rem 3rem;
+}
+
+.hero h1 {
+  font-size: 2.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.pokemon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.pokemon-card {
+  background: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  padding: 1.25rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--cor-texto);
+  transition: transform 0.2s ease;
+}
+
+.pokemon-card:hover {
+  transform: translateY(-4px);
+}
+
+.pokemon-card img {
+  width: 100%;
+  max-width: 160px;
+  margin-bottom: 0.75rem;
+}
+
+article.pagina-conteudo {
+  background: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.hero-gif {
+  display: block;
+  max-width: 220px;
+  margin: 0 auto 1.5rem;
+}
+
+article h1 {
+  text-align: center;
+  border-bottom: 3px solid var(--accent, var(--cor-accent-padrao));
+  padding-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+article .subtitulo {
+  text-align: center;
+  color: var(--cor-texto-suave);
+  margin-top: -0.5rem;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+section.bloco {
+  margin-top: 2.5rem;
+}
+
+section.bloco h2 {
+  color: var(--accent, var(--cor-accent-padrao));
+  border-left: 4px solid var(--accent, var(--cor-accent-padrao));
+  padding-left: 0.6rem;
+}
+
+.ficha-tecnica {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.ficha-tecnica li strong {
+  color: var(--accent, var(--cor-accent-padrao));
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-x: auto;
+  display: block;
+}
+
+table thead {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+table th,
+table td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--cor-borda);
+  text-align: left;
+  font-size: 0.92rem;
+}
+
+.evolucao-linha {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  text-align: center;
+}
+
+.evolucao-linha .seta {
+  font-size: 1.5rem;
+  color: var(--accent, var(--cor-accent-padrao));
+}
+
+.site-footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+  border-top: 1px solid var(--cor-borda);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 900px) {
+  .pokemon-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header__wrap {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-nav ul {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .pokemon-grid {
+    grid-template-columns: 1fr;
+  }
+
+  article.pagina-conteudo {
+    padding: 1.25rem;
+  }
+
+  .ficha-tecnica {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
