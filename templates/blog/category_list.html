@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<article class="pagina-conteudo">
+  <h1>Categorias</h1>
+  <ul>
+    {% for category in categories %}
+      <li>
+        <a href="{% url 'category_detail' category.pk %}">{{ category.name }}</a>
+        - {{ category.description }}
+      </li>
+    {% endfor %}
+  </ul>
+</article>
+{% endblock %}

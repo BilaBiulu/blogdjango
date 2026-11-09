@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<article class="pagina-conteudo">
+  <h1>{% if category %}Categoria: {{ category.name }}{% else %}Posts{% endif %}</h1>
+  {% if category %}<p>{{ category.description }}</p>{% endif %}
+  <ul>
+    {% for post in posts %}
+      <li>
+        <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
+        - {{ post.date|date:"d/m/Y H:i" }}
+      </li>
+    {% empty %}
+      <li>Nenhum post ainda.</li>
+    {% endfor %}
+  </ul>
+  <p><a href="{% url 'post_create' %}">Novo post</a></p>
+</article>
+{% endblock %}

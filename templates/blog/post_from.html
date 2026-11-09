@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<article class="pagina-conteudo">
+  <h1>{% if post %}Editar post{% else %}Novo post{% endif %}</h1>
+    <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar</button>
+  </form>
+</article>
+{% endblock %}

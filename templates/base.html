@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Blog de Hoenn{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="pagina-hoenn">
+  <header class="site-header">
+    <div class="site-header__wrap">
+      <p class="site-title"><a href="{% url 'post_list' %}">Blog de Hoenn</a></p>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="{% url 'category_list' %}">Categorias</a></li>
+          <li><a href="{% url 'post_list' %}">Posts</a></li>
+          <li><a href="{% url 'post_create' %}">Novo post</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <p>Blog feito com Django</p>
+  </footer>
+</body>
+</html>

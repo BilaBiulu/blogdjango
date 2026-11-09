@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<article class="pagina-conteudo">
+  <h1>Remover post</h1>
+  <p>Tem certeza que deseja remover "{{ post.title }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Sim, remover</button>
+    <a href="{% url 'post_detail' post.pk %}">Cancelar</a>
+  </form>
+</article>
+{% endblock %}

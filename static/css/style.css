@@ -23,7 +23,7 @@ html, body {
 body.pagina-hoenn {
   background-image:
     linear-gradient(var(--cor-fundo-overlay), var(--cor-fundo-overlay)),
-    url("/images/hoenn-bg.jpg");
+    url("../images/hoenn-bg.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
