@@ -1,50 +1,40 @@
-from django.urls import reverse_lazy, reverse
-from django.views.generic import (ListView, DetailView, CreateView, UpdateView, DeleteView)
-from .models import Post, Comment, Category
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Post
 
-class PostListView(ListView):
-    model = Post
-    ordering = ['-date']
-    context_object_name = 'posts'
 
-class CategoryListView(ListView):
-    model = Category
-    context_object_name = 'categories'
+def post_list(request):
+    posts = Post.objects.order_by('-date')
+    return render(request, 'blog/post_list.html', {'posts': posts})
 
-def category_detail(request, pk):
-    category = get_object_or_404(Category, pk=pk)   # 404 se não existir
-    posts = category.posts.order_by('-date')
-    # reutiliza o template de listagem da parte 1
-    return render(request, 'blog/post_list.html', {'posts': posts, 'category': category})
 
-class PostDetailView(DetailView):
-    model = Post
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, 'blog/post_detail.html', {'post': post})
 
-class PostCreateView(CreateView):
-    model = Post
-    fields = ['title', 'content']
 
-class PostUpdateView(UpdateView):
-    model = Post
-    fields = ['title', 'content']
+def post_create(request):
+    if request.method == 'POST':
+        post = Post.objects.create(
+            title=request.POST['title'],
+            content=request.POST['content'],
+        )
+        return redirect('post_detail', pk=post.pk)
+    return render(request, 'blog/post_form.html')
 
-class PostDeleteView(DeleteView):
-    model = Post
-    success_url = reverse_lazy('post_list')
 
-class CommentCreateView(CreateView):
-    model = Comment
-    fields = ['author', 'text']
+def post_update(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'POST':
+        post.title = request.POST['title']
+        post.content = request.POST['content']
+        post.save()
+        return redirect('post_detail', pk=post.pk)
+    return render(request, 'blog/post_form.html', {'post': post})
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['post'] = get_object_or_404(Post, pk=self.kwargs['pk'])
-        return context
 
-    def form_valid(self, form):
-        form.instance.post = get_object_or_404(Post, pk=self.kwargs['pk'])
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return reverse('post_detail', kwargs={'pk': self.kwargs['pk']})
+def post_delete(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('post_list')
+    return render(request, 'blog/post_confirm_delete.html', {'post': post})

@@ -2,9 +2,10 @@
 {% block content %}
 <article class="pagina-conteudo">
   <h1>{% if post %}Editar post{% else %}Novo post{% endif %}</h1>
-    <form method="post">
+  <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    <p><label>Título<br><input type="text" name="title" value="{{ post.title }}"></label></p>
+    <p><label>Conteúdo (HTML)<br><textarea name="content" rows="10" cols="60">{{ post.content }}</textarea></label></p>
     <button type="submit">Salvar</button>
   </form>
 </article>
